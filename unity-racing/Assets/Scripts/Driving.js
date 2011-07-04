@@ -3,5 +3,5 @@ var left : WheelCollider;
 var right : WheelCollider;
 
 function Update () {
-	debug.Log("Hallo");	
+	Debug.Log("Hallo");	
 }
