@@ -11,5 +11,11 @@ function FixedUpdate () {
 		//Lenkbewegung des Autos
 		left.steerAngle = 10 * Input.GetAxis("Horizontal");//bewegt sich zwischen -1 und 1
 		right.steerAngle = 10 * Input.GetAxis("Horizontal");//bewegt sich zwischen -1 und 1
+		
+}
+
+function Start () {
+
+	rigidbody.centerOfMass.y = 0;
 
 }
