@@ -4,6 +4,14 @@ var left : WheelCollider;
 var right : WheelCollider;
 
 function FixedUpdate () {
+		//herrausfinden des aktuellen Zustands des Autos
+		Vert = Input.GetAxis("Vertical");
+		Horiz = Input.GetAxis("Horizontal");
+		
+		
+		
+		
+		
 		//Vorwärtsbewegung des Autos!
 		left.motorTorque = accTorque * Input.GetAxis("Vertical");//bewegt sich zwischen -1 und 1
 		right.motorTorque = accTorque * Input.GetAxis("Vertical");//bewegt sich zwischen -1 und 1
