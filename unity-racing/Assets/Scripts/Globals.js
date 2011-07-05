@@ -5,6 +5,7 @@ static var stateofcar : int;
 	1...accelerate forward
 	2...braking
 	3...accelerate back
+	4...Car rolling (Geschw. <> 0 und Beschl = 0) 
 	*/
 var wheelc : WheelCollider;
 

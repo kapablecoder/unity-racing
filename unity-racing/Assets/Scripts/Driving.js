@@ -1,30 +1,51 @@
-var accTorque = 250;
-var braTorque = 300;
+var AccelerateForward = 250;
+var AccelerateBack = 30;
+var brakeforce = 300;
 var left : WheelCollider;
 var right : WheelCollider;
-var Vert : float;
-var Horiz : float;
+private var Vert : float;
+private var Horiz : float;
+var standartfriction = 10;
+private var text = " ";
+
 
 function FixedUpdate () {
 		//herrausfinden des aktuellen Zustands des Autos
 		Vert = Input.GetAxis("Vertical");
 		Horiz = Input.GetAxis("Horizontal");
 		
-		if ((Vert>0) && (Globals.currentspeed<0) || (Vert<0) &&(Globals.currentspeed>0)) {
-			Globals.stateofcar = 2; //Brakeing
-			}
-		if (Globals.currentspeed == 0) {
+		
+		if (Globals.currentspeed == 0 && Vert==0) {
 			Globals.stateofcar = 0; //Car in waiting Position
+			text = "warten  ";
 			}
+			
 		if ((Vert>0) && (Globals.currentspeed>=0)) {
 			Globals.stateofcar = 1; //Car accelerate foward
+				left.motorTorque = AccelerateForward * Vert;
+				right.motorTorque = AccelerateForward * Vert;
+			text = "beschl. vor   ";	
 			}
+			
+		if ((Vert>0) && (Globals.currentspeed<0) || (Vert<0) &&(Globals.currentspeed>0)) {
+			Globals.stateofcar = 2; //Brakeing
+				left.brakeTorque = brakeforce * Vert * (-1);
+				right.brakeTorque = brakeforce * Vert * (-1);
+			text = "bremsen   ";	
+			}
+			
 		if ((Vert<0) && (Globals.currentspeed<0)) {
 			Globals.stateofcar = 3; //Car accelerate back
+				left.motorTorque = AccelerateBack * Vert;
+				right.motorTorque = AccelerateBack * Vert;
+			text = "rückwärts    ";
 			}
-		if (Vert==0) {
+		if (Vert==0 && Globals.currentspeed != 0) {
 			Globals.stateofcar = 4; //Car rolling
+			text = "rollen    ";
 			}
+			
+		Debug.Log(text+left.motorTorque.ToString());
 		
 		
 		
